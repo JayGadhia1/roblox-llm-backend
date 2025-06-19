@@ -1,14 +1,14 @@
 require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const { OpenAI } = require('openai');
+import express from 'express';
+import cors from 'cors';
+import { json } from 'body-parser';
+import { OpenAI } from 'openai';
 
 const app = express();
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(json());
 
 app.post('/llm', async (req, res) => {
   const { prompt } = req.body;
